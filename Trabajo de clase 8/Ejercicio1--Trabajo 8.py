@@ -4,7 +4,7 @@ Numeroaadivinar = random.randint(1, 100)
 
 while True:
     try:
-        Intentoadivinar = int(input("Intenta adivinar el numero: "))
+        Intentoadivinar = int(input("Intenta adivinar el numero entre el 1 y el 100: "))
 
         if Intentoadivinar < Numeroaadivinar:
             print("El número secreto es mayor que el numero ingresado.")
