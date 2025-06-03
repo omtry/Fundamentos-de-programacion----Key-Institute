@@ -74,8 +74,8 @@ consumo_normalizado= (consumo - consumo.min())/(consumo.max()-consumo.min())
 
 # 1) ¿Cuál es el consumo del hogar 5 el viernes (día 5)?
 
-consumodelhogar5elviernes= consumo[4,4]
-print("El consumo del hogar numero 5 para el dia viernes fue de:", consumodelhogar5elviernes, "Kw/h")
+hogar_5= consumo[4,4]
+print("El consumo del hogar numero 5 para el dia viernes fue de:", hogar_5, "Kw/h")
 
 # Tal como se enseño en la guia, como se pide un dato especifico, 
 # se indica que imprima el dato de la columna 5 y fila 5, pero en phyton se empieza de 0 por lo que seria el indice 4
@@ -83,17 +83,17 @@ print("El consumo del hogar numero 5 para el dia viernes fue de:", consumodelhog
 
 # 2)  Usando indexación, muestra el consumo de los últimos 3 hogares el domingo
 
-consumoeldomingodelosultimos3hogares = consumo[-3:, -1]
-print("El consumo en los últimos 3 hogares el dia domingo fue de :", consumoeldomingodelosultimos3hogares, "Kw/h")
+ultimos_3_hogares = consumo[-3:, 6]
+print("El consumo en los últimos 3 hogares el dia domingo fue de :", ultimos_3_hogares, "Kw/h")
 
 # De forma parecida se indica la ubicacion de los datos que se necesita conocer, 
-# pero con el menos 3 y los dos puntos se indica que deben ser los ultimos 3 hogares y el -1 indica que son los datos del ultimo dia es decir la ultima columna
+# pero con el menos 3 y los dos puntos se indica que deben ser los ultimos 3 hogares y el 6 indica que son los datos del ultimo dia es decir la ultima columna
 
 
 # 3) Consumo promedio en el fin de semana
 
-promedio_fin_de_semana = np.mean(consumo[:, 5:7]) 
-print("El promedio de consumo en el fin de semana fue de:", promedio_fin_de_semana, "Kw/h" )
+prom_finde = np.mean(consumo[:, 5:7]) 
+print("El promedio de consumo en el fin de semana fue de:", prom_finde, "Kw/h" )
 
 # Se usa el comando que se nos enseño "mean", se seleccionan todas las filas y unicamente las columanas 5 y 6, 
 # que son el sabado y el domingo y el axis 0 refleja que se trabaja con los datos para cada dia
@@ -102,21 +102,22 @@ print("El promedio de consumo en el fin de semana fue de:", promedio_fin_de_sema
 # 4) ¿Qué día de la semana tiene la mayor desviación estándar entre hogares? Explica qué indica esto.
 
 
-desviacion_por_dia = np.std(consumo, axis=0)
-dia_mayor_desviacion = np.argmax(desviacion_por_dia)
+desviacion = np.std(consumo, axis=0)
+dia_mayor = np.argmax(desviacion)
 dias_semana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
-print(f"El día con mayor desviación estándar fue el {dias_semana[dia_mayor_desviacion]} con una desviacion de ({desviacion_por_dia[dia_mayor_desviacion]:.2f})")
+print(f"El día con mayor desviación estándar fue el {dias_semana[dia_mayor]} con una desviacion de ({desviacion[dia_mayor]:.2f})")
 
 # Lo que refleja que el dia con mayor desviacion haya sido el viernes es que para ese dia en especifico los hogares
-# tuvieron consumos muy diferentes entre si, es decir que no hubo un comportamiento promedio, cada hogsar tuvo una tendencia de consumo diferente 
+# tuvieron consumos muy diferentes entre si, es decir que no hubo un comportamiento promedio, cada hogsar tuvo una tendencia de consumo diferente, 
+# mostrando una falta de uniformidad en sus habitos de consumo
 
 
 # 5) Identifica los 3 hogares con menor consumo total durante la semana. Muestra sus índices y valores.
 
 consumo_total = np.sum(consumo, axis=1)
-indices_menor_consumo = np.argsort(consumo_total)[:3]
-valores_menor_consumo = consumo_total[indices_menor_consumo]
-print("Los indices de los 3 hogares con menor consumo fueron:", indices_menor_consumo)
+hogar_menor_consumo = np.argsort(consumo_total)[:3]
+valores_menor_consumo = consumo_total[hogar_menor_consumo]
+print("Los indices de los 3 hogares con menor consumo fueron:", hogar_menor_consumo)
 print("Los valores de consumo para esos hogares fueron de:", valores_menor_consumo, "Kw/h")
 
 #Aca lo primero que se hace es que se suma el consumo de cada hogar en cada dia de la semana, luego ordena los hogares segun menor haya sido su consumo y toma
@@ -125,9 +126,9 @@ print("Los valores de consumo para esos hogares fueron de:", valores_menor_consu
 
 # 6) Si el hogar 3 aumenta su consumo en un 10% cada día, ¿cuál sería su nuevo consumo total semanal?
 
-nuevo_consumo_hogar3 = consumo[2] * 1.10
-nuevo_total_hogar3 = round(np.sum(nuevo_consumo_hogar3),2)
-print("El nuevo consumo total del hogar 3 aumentando un 10% es de:", nuevo_total_hogar3,"Kw/h")
+nconsumodiario = consumo[2,:] * 1.10
+ntotalconsumo = round(np.sum(nconsumodiario),2)
+print("El nuevo consumo total del hogar 3 aumentando un 10% es de:", ntotalconsumo,"Kw/h")
 
 # Primero se multiplica el valor del consumo del hogar 3 (indice 2) por 1.10 para suponer que aumento un 10% su consumo por dia, luego
 # se suma el consumo de cada dia para conocer el mensual y ya se imprime cual es su nuevo consumo 
