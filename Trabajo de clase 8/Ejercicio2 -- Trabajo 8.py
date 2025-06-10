@@ -1,3 +1,16 @@
+
+'''
+Clase:        Clase 5 -- Bloques Iterativos
+Tema:         Bloque Iterativo
+Ejercicio:    5.4.2 -- Suma de valores posicionales
+
+Descripción:  Pide un número al usuario y suma sus dígitos hasta que quede un solo dígito.
+
+Autor:        Gerardo Andre Calderon Castillo
+Fecha:        2025-05-28
+Estado:       [Terminado]
+'''
+
 print("-"*25)
 Numeroasumar = input("Ingrese un numero el cual reduciremos: ")
 print("-"*25)
