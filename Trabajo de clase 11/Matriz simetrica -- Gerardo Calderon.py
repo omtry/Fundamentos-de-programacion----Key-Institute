@@ -16,30 +16,34 @@ Estado:       [Terminado]
 # El usuario ingresa el tamaño de la matriz, que solo puede ser un numero entero n
 n = int(input("Ingrese el tamaño de la matriz cuadrada: "))
 
-# Inicializar la matriz teniendo en ceunta el numero dado por el usuario
+# Inicializamos la matriz teniendo en cuenta el numero dado por el usuario
 matriz = [] #Se crea una lista llamada matriz, que almacenara la matriz
 print("Ingrese los elementos de la matriz fila por fila:")
 for i in range(n): #Se crea la variable i, que representa a cada numero de la matriz, y n el tamaño de la fila           
     fila = list(map(int, input().split(","))) # El usuario ingresa los numeros de la fila, estos se separan individualemnte con el split
-                                           #y se les aplica una funcion de enteros con el map, y se ingresa a la lsita matriz
+                                           #y se les aplica una funcion de enteros con el map, y se ingresa a la lista matriz (reomado de Chat GPT)
     if len(fila) != n:
-        print("Cada fila debe tener", n, "elementos.") # Solo se condiciona en caso la fila tenga mas o menos elementos que los ingresados
-        break
-matriz.append(fila)
+        print("Cada fila debe tener", n, "elementos.") # Solo se condiciona en caso la fila tenga mas o menos elementos que los necesarios
+        exit(1)
+    matriz.append(fila)
     
-essimetrico=False  # Creamos la variable booleana con la que trabajaremos la simetria
+essimetrico = True  # Suponemos que es simétrica hasta encontrar lo contrario
 
 for i in range(n):
-        for j in range(n): #Hacemos un for dentro de otro for que usaremos como iterables que recorran las columnas y filas
-            if matriz[i][j] == matriz[j][i]: # Condicionamos que si la celda i,j es igual que la celda j,i la matriz es simetrica
-                essimetrico=True
-                break
-            else:
-                essimetrico=False
-                break # Si no es igual, se rompe el bucle, y pues la variable se mantiene en False
+    for j in range(n): #Se usa un for anidado para evaluar tanto filas como columnas 
+        if matriz[i][j] != matriz[j][i]: # Condicionamps que si el valor de la celda i, j no es el mismo que
+                                         # el de la celda j,i la matriz no es simetrica
+            essimetrico = False
+            break
+    if not essimetrico:
+        break
 
-if essimetrico== True:
+if essimetrico:
     print("La matriz es simetrica")
-elif essimetrico== False:
-    print("La matriz no es simetrica")
+else:
+    print("La matriz no es simetrica") # Se condiciona para determinar que se va a imprimir, si es o no es simetrica
+    
+    
+#--- Alumno: Gerardo Andre Calderon Castillo --
+    
     

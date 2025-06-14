@@ -21,27 +21,27 @@ def leer_matriz(): # Creas una funcion que guarda los datos de la matriz
     matriz = [] # Creas una lista que va a guardar los datos de la matriz
     print("Ingrese la matriz fila por fila (solo 0 y 1, separados por coma):")
     for k in range(n):
-        fila = list(map(int, input().strip().split())) # El usuario ingresa la secuencia binaria de cada fila
+        fila = list(map(int, input().strip().split(","))) # El usuario ingresa la secuencia binaria de cada fila
         matriz.append(fila) #Se agrega cada fila a la matriz
     return matriz
 
 def contar_vecinos1 (matriz):
     n = len(matriz) # Se determina el numero de filas     
     m = len(matriz[0]) #Se determina el numero de columnas    
-    resultado = [[0]*m for y in range(n)]  # Creamos una matriz vacía para guardar los resultados de las sumas
+    resultado = [[0]*m for y in range(n)]  # Creamos una lista para guardar los resultados de las sumas, (retomado de ChatGPT)
 
     direcciones = [(-1, -1), (-1, 0), (-1, 1),
                    (0, -1),           (0, 1),
-                   (1, -1),  (1, 0),  (1, 1)] #Las busque en Internet, pero representan las 8 direcciones
+                   (1, -1),  (1, 0),  (1, 1)] #Las busque en Internet, pero representan las 8 direcciones en las que se puede recorrer
 
     for i in range(n):         
         for j in range(m): # Hacemos un for anidado que recorre cada celda de la matriz
             suma = 0 # Nuestra variable de suma de forma predeterminada es cero
-            for dx, dy in direcciones:  # El programa recorre cada direccion vecina
-                ni, nj = i + dx, j + dy  # El programa calcula la posicion del vecino
-                if 0 <= ni < n and 0 <= nj < m:  # Se asegura que la posicion del vecino este dentro de los limites de la matriz
+            for dx, dy in direcciones:  # El programa recorre cada direccion vecina (retomado de ChatGPT)
+                ni, nj = i + dx, j + dy  # El programa calcula la posicion del vecino (retomado de ChatGPT)
+                if 0 <= ni < n and 0 <= nj < m:  # Se asegura que la posicion del vecino este dentro de los limites de la matriz (retomado de ChatGPT)1
                     suma += matriz[ni][nj]       # En caso el vecino si sea 1, la variable suma aumenta en 1
-            resultado[i][j] = suma  # Se guarda la suma en la matriz resultado
+            resultado[i][j] = suma  # Se guarda la suma en el resultado
 
     return resultado
 
@@ -53,6 +53,7 @@ def imprimir_matriz(matriz):
 
 matriz = leer_matriz()
 resultado = contar_vecinos1 (matriz)
-print("Matriz de suma de vecinos con valor 1132was:")
+print("Matriz de suma de vecinos con valor 1:")
 imprimir_matriz(resultado)
 
+#--- Alumno: Gerardo Andre Calderon Castillo --

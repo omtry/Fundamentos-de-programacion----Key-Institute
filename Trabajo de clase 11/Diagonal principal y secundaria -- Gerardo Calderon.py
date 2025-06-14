@@ -18,14 +18,14 @@ Estado:       [Terminado]
 # El usuario ingresa el tamaño de la matriz, que solo puede ser un numero entero n
 n = int(input("Ingrese el tamaño de la matriz cuadrada: "))
 
-# Inicializar la matriz teniendo en ceunta el numero dado por el usuario
+# Inicializar la matriz teniendo en cuenta el numero dado por el usuario
 matriz = [] #Se crea una lista llamada matriz, que almacenara la matriz
 print("Ingrese los elementos de la matriz fila por fila:")
 for i in range(n): #Se crea la variable i, que representa a cada numero de la matriz, y n el tamaño de la fila           
     fila = list(map(int, input().split(","))) # El usuario ingresa los numeros de la fila, estos se separan individualemnte con el split
-                                           #y se les aplica una funcion de enteros con el map, y se ingresa a la lsita matriz
+                                           #y se les aplica una funcion de enteros con el map, y se ingresa a la lista matriz (retomado de ChatGPT))
     if len(fila) != n:
-        print("Cada fila debe tener", n, "elementos.") # Solo se condiciona en caso la fila tenga mas o menos elementos que los ingresados
+        print("Cada fila debe tener", n, "elementos.") # Solo se condiciona en caso la fila tenga mas o menos elementos que los necesarios
         exit(1)
     matriz.append(fila)
 
